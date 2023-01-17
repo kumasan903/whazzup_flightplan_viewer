@@ -30,11 +30,11 @@ fn main() -> ! {
 			}
 			if tmp[1].is_empty()
 			{
-				println!("{}(NAME)",tmp[0]);	//Call sign(Name)
+				println!("{}(NAME) {}",tmp[0], tmp[21]);	//Call sign(Name)
 			}
 			else
 			{
-				println!("{}({})",tmp[0], tmp[1]);	//Call sign(Name)
+				println!("{}({}) {}",tmp[0], tmp[1], tmp[21]);	//Call sign(Name)
 			}
 			if tmp[11].is_empty() && tmp[13].is_empty()
 			{
