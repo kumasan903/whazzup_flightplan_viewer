@@ -22,7 +22,7 @@ fn main() -> ! {
 		i = 7;
 		while i < (clients_count + 7)
 		{
-			let tmp :Vec<&str> = v[i].split(':').collect();
+			let mut tmp :Vec<&str> = v[i].split(':').collect();
 			if tmp[3] == "ATC"
 			{
 				i += 1;
@@ -30,28 +30,25 @@ fn main() -> ! {
 			}
 			if tmp[1].is_empty()
 			{
-				println!("{}(NAME) {}",tmp[0], tmp[21]);	//Call sign(Name)
+				tmp[1] = "NAME";
+			}
+			if tmp[11].is_empty()
+			{
+				tmp[11] = "(FROM)";
+			}
+			if tmp[13].is_empty()
+			{
+				tmp[13] = "(TO)";
+			}
+			if tmp[21] == "IFR"
+			{
+				println!("{}({})",tmp[0], tmp[1]);	//Call sign(Name)
 			}
 			else
 			{
-				println!("{}({}) {}",tmp[0], tmp[1], tmp[21]);	//Call sign(Name)
+				println!("{}({}) {}",tmp[0], tmp[1], tmp[21]);	//Call sign(Name) RULE
 			}
-			if tmp[11].is_empty() && tmp[13].is_empty()
-			{
-				println!("(FROM)-(TO)");
-			}
-			else if tmp[11].is_empty()
-			{
-				println!("(FROM)-{}", tmp[13]);
-			}
-			else if tmp[13].is_empty()
-			{
-				println!("{}-(TO)", tmp[11]);
-			}
-			else
-			{
-				println!("{}-{}", tmp[11], tmp[13]);
-			}
+			println!("{}-{}", tmp[11], tmp[13]); //FROM-TO
 			println!("FPL : {}",tmp[30]);	//Flight plan
 			println!("RMK : {}\n",tmp[29]);	//Remarks
 			i += 1;
